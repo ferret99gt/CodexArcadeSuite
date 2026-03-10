@@ -26,6 +26,8 @@ public final class CodexArcadeSuiteApp extends Application
     private static final SuiteEntry[] ENTRIES = {
             new SuiteEntry("CodexCommand", "Missile defense.", "CodexCommand.exe",
                     "https://github.com/ferret99gt/CodexCommand"),
+            new SuiteEntry("Codexroids", "Vector asteroid survival.", "Codexroids.exe",
+                    "https://github.com/ferret99gt/Codexroids"),
             new SuiteEntry("Codextris", "Falling blocks.", "Codextris.exe",
                     "https://github.com/ferret99gt/Codextris"),
             new SuiteEntry("CodexMan", "Maze chase.", "CodexMan.exe",
@@ -44,7 +46,7 @@ public final class CodexArcadeSuiteApp extends Application
         Label title = new Label("Codex Arcade Suite");
         title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #8fe2ff;");
 
-        Label subtitle = new Label("Original GPT Codex arcade projects, one shared runtime.");
+        Label subtitle = new Label("Five standalone Codex arcade projects, one shared runtime.");
         subtitle.setStyle("-fx-font-size: 15px; -fx-text-fill: #b9d7ff;");
 
         root.getChildren().addAll(title, subtitle);

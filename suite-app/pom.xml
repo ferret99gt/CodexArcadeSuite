@@ -58,6 +58,12 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
+      <groupId>com.codexroids</groupId>
+      <artifactId>codexroids</artifactId>
+      <version>0.1.0</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
       <groupId>com.codextris</groupId>
       <artifactId>codextris</artifactId>
       <version>0.1.0</version>
@@ -177,6 +183,7 @@
               <addModules>
                 <module>com.codexarcadesuite</module>
                 <module>com.codexcommand</module>
+                <module>com.codexroids</module>
                 <module>com.codextris</module>
                 <module>com.codexman</module>
                 <module>com.codexaga</module>
@@ -185,6 +192,10 @@
                 <launcher>
                   <name>CodexCommand</name>
                   <file>${project.basedir}/src/main/jpackage/codexcommand.properties</file>
+                </launcher>
+                <launcher>
+                  <name>Codexroids</name>
+                  <file>${project.basedir}/src/main/jpackage/codexroids.properties</file>
                 </launcher>
                 <launcher>
                   <name>Codextris</name>

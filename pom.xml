@@ -11,6 +11,7 @@
 
   <modules>
     <module>../CodexCommand</module>
+    <module>../Codexroids</module>
     <module>../Codextris</module>
     <module>../CodexMan</module>
     <module>../Codexaga</module>
