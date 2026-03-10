@@ -23,6 +23,17 @@ public final class CodexArcadeSuiteApp extends Application
 {
     private static final String APP_PATH_PROPERTY = "jpackage.app-path";
 
+    private static final SuiteEntry[] ENTRIES = {
+            new SuiteEntry("CodexCommand", "Missile defense.", "CodexCommand.exe",
+                    "https://github.com/ferret99gt/CodexCommand"),
+            new SuiteEntry("Codextris", "Falling blocks.", "Codextris.exe",
+                    "https://github.com/ferret99gt/Codextris"),
+            new SuiteEntry("CodexMan", "Maze chase.", "CodexMan.exe",
+                    "https://github.com/ferret99gt/CodexMan"),
+            new SuiteEntry("Codexaga", "Arcade shooter.", "Codexaga.exe",
+                    "https://github.com/ferret99gt/Codexaga")
+    };
+
     @Override
     public void start(Stage stage)
     {
@@ -33,48 +44,54 @@ public final class CodexArcadeSuiteApp extends Application
         Label title = new Label("Codex Arcade Suite");
         title.setStyle("-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #8fe2ff;");
 
-        Label subtitle = new Label("GPT Codex written arcade games in one launcher!");
+        Label subtitle = new Label("Original GPT Codex arcade projects, one shared runtime.");
         subtitle.setStyle("-fx-font-size: 15px; -fx-text-fill: #b9d7ff;");
 
-        root.getChildren().addAll(
-                title,
-                subtitle,
-                createLauncherCard("Codextris", "Falling blocks.", "Codextris.exe"),
-                createLauncherCard("CodexMan", "Maze chase.", "CodexMan.exe"),
-                createLauncherCard("Codexaga", "Arcade shooter.", "Codexaga.exe"));
+        root.getChildren().addAll(title, subtitle);
+        for (SuiteEntry entry : ENTRIES)
+        {
+            root.getChildren().add(createLauncherCard(entry));
+        }
 
         ScrollPane scrollPane = new ScrollPane(root);
         scrollPane.setFitToWidth(true);
         scrollPane.setPannable(true);
         scrollPane.setStyle("-fx-background: #030916; -fx-background-color: #030916;");
 
-        Scene scene = new Scene(scrollPane, 500, 420, Color.BLACK);
+        Scene scene = new Scene(scrollPane, 560, 520, Color.BLACK);
         stage.setTitle("Codex Arcade Suite");
         stage.setScene(scene);
-        stage.setMinWidth(420);
-        stage.setMinHeight(320);
+        stage.setMinWidth(460);
+        stage.setMinHeight(360);
         stage.setResizable(true);
         stage.show();
     }
 
-    private HBox createLauncherCard(String name, String description, String executableName)
+    private HBox createLauncherCard(SuiteEntry entry)
     {
-        Label nameLabel = new Label(name);
+        Label nameLabel = new Label(entry.name());
         nameLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;");
 
-        Label descLabel = new Label(description);
+        Label descLabel = new Label(entry.description());
         descLabel.setStyle("-fx-font-size: 13px; -fx-text-fill: #99b4db;");
 
         VBox textColumn = new VBox(4, nameLabel, descLabel);
 
         Button playButton = new Button("Play");
         playButton.setStyle("-fx-background-color: #2f9bff; -fx-text-fill: white; -fx-font-weight: bold;");
-        playButton.setOnAction(event -> launch(executableName));
+        playButton.setOnAction(event -> launch(entry.executableName()));
+
+        Button repoButton = new Button("Repo");
+        repoButton.setStyle("-fx-background-color: #203959; -fx-text-fill: #d8ebff; -fx-font-weight: bold;");
+        repoButton.setOnAction(event -> getHostServices().showDocument(entry.repoUrl()));
+
+        HBox buttons = new HBox(10, playButton, repoButton);
+        buttons.setAlignment(Pos.CENTER_RIGHT);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox card = new HBox(14, textColumn, spacer, playButton);
+        HBox card = new HBox(14, textColumn, spacer, buttons);
         card.setAlignment(Pos.CENTER_LEFT);
         card.setPadding(new Insets(14));
         card.setStyle("-fx-background-color: rgba(17, 34, 68, 0.88);"
@@ -131,5 +148,9 @@ public final class CodexArcadeSuiteApp extends Application
     public static void main(String[] args)
     {
         launch(args);
+    }
+
+    private record SuiteEntry(String name, String description, String executableName, String repoUrl)
+    {
     }
 }

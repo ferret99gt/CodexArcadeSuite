@@ -10,6 +10,7 @@
   <name>CodexArcadeSuite</name>
 
   <modules>
+    <module>../CodexCommand</module>
     <module>../Codextris</module>
     <module>../CodexMan</module>
     <module>../Codexaga</module>
