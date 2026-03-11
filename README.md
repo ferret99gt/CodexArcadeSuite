@@ -30,3 +30,7 @@ Launchers included:
 - CodexMan: https://github.com/ferret99gt/CodexMan
 - Codexaga: https://github.com/ferret99gt/Codexaga
 - CodexArcadeSuite: https://github.com/ferret99gt/CodexArcadeSuite
+
+## License
+
+MIT. See `LICENSE`.
